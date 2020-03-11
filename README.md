@@ -1,4 +1,4 @@
-PHP(-cli) images with Composer and following PHP modules:
+PHP(-cli) images with Composer, Supercronic and following PHP modules:
 
  * bcmath
  * Corectype
