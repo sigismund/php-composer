@@ -1,0 +1,127 @@
+version: "3.2"
+
+services:
+  php-7.2-xdebug:
+    image: zhigad/php-composer:7.2-xdebug
+    build:
+      context: provision/php/7.2
+      args:
+        - WITH_XDEBUG=true
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-7.2:
+    image: zhigad/php-composer:7.2
+    build:
+      context: provision/php/7.2
+      args:
+        - WITH_XDEBUG=false
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-cli-7.2:
+    image: zhigad/php-cli-composer:7.2
+    build:
+      context: ./provision/php-cli/7.2
+      args:
+        - WITH_XDEBUG=false
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /var/www/html
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-cli-7.2-xdebug:
+    image: zhigad/php-cli-composer:7.2-xdebug
+    build:
+      context: ./provision/php-cli/7.2
+      args:
+        - WITH_XDEBUG=true
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /var/www/html
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-7.4-xdebug:
+    image: zhigad/php-composer:7.4-xdebug
+    build:
+      context: provision/php/7.4
+      args:
+        - WITH_XDEBUG=true
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-7.4:
+    image: zhigad/php-composer:7.4
+    build:
+      context: provision/php/7.4
+      args:
+        - WITH_XDEBUG=false
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-cli-7.4:
+    image: zhigad/php-cli-composer:7.4
+    build:
+      context: ./provision/php-cli/7.4
+      args:
+        - WITH_XDEBUG=false
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /var/www/html
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
+  php-cli-7.4-xdebug:
+    image: zhigad/php-cli-composer:7.4
+    build:
+      context: ./provision/php-cli/7.4
+      args:
+        - WITH_XDEBUG=true
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /var/www/html
+    environment:
+      PHP_INI_SCAN_DIR: "/usr/local/etc/php/custom.d:/usr/local/etc/php/conf.d"
+    volumes:
+      - ./provision/php-cli/php-ini:/usr/local/etc/php/custom.d
+      - ./src:/var/www/html
+      - ~/.ssh:/home/${USER:-root}/.ssh
+      - /tmp:/tmp
+      - ~/.composer:/.composer
