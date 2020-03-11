@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libjpeg-dev
 
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-configure gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/
+RUN docker-php-ext-configure intl gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/
+
 RUN docker-php-ext-install -j$(nproc) intl soap mysqli pdo_mysql mbstring zip bcmath pcntl gmp gd && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

@@ -13,15 +13,14 @@ RUN apt-get update && apt-get install -y \
     libgmp-dev \
     libzip-dev \
     iproute2 \
-    mariadb-client \
     libfreetype6-dev \
     libjpeg-dev \
     libwebp-dev \
     libpng-dev \
-    libjpeg62-turbo-dev
+    libjpeg62-turbo-dev \
+    mariadb-client
 
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-configure gd --with-freetype --with-webp-dir=/usr/include --with-jpeg-dir=/usr/include --with-png-dir=/usr/include
+RUN docker-php-ext-configure intl gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/
 
 RUN docker-php-ext-install -j$(nproc) intl soap mysqli pdo_mysql mbstring zip bcmath pcntl gmp gd && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
