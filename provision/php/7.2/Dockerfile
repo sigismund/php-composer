@@ -27,11 +27,9 @@ RUN docker-php-ext-configure intl \
 RUN docker-php-ext-install -j$(nproc) intl soap mysqli pdo_mysql mbstring zip bcmath pcntl gmp gd && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN pecl install mongodb \
-    && docker-php-ext-enable mongodb
-
 ENV COMPOSER_HOME /.composer
 
+# Install xdebug
 ARG WITH_XDEBUG=false
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
         pecl install xdebug; \
@@ -44,6 +42,13 @@ RUN if [ $WITH_XDEBUG = "true" ] ; then \
         echo "xdebug.profiler_enable = 0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
         echo "xdebug.remote_host=`/sbin/ip route|awk '/default/ { print $3 }'`" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
     fi ;
+
+# Install php-redis php-mongodb php-igbinary
+RUN pecl install -o -f redis mongodb igbinary \
+    &&  rm -rf /tmp/pear \
+    && docker-php-ext-enable mongodb \
+    && docker-php-ext-enable redis \
+    && docker-php-ext-enable igbinary
 
 CMD ["php-fpm"]
 
