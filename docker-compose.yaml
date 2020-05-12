@@ -174,7 +174,7 @@ services:
       - /tmp:/tmp
       - ~/.composer:/.composer
   php-cli-7.4-xdebug:
-    image: zhigad/php-cli-composer:7.4
+    image: zhigad/php-cli-composer:7.4-xdebug
     build:
       context: ./provision/php-cli/7.4
       args:
