@@ -20,7 +20,12 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     # mbstring fix
-    libonig-dev
+    libonig-dev \
+    # mongodb auth fix
+    pkg-config \
+    libssl-dev \
+    libmongoc-1.0-0
+
 
 RUN docker-php-ext-configure intl \
     && docker-php-ext-configure gd --with-webp=/usr/include/  --with-jpeg=/usr/include/  --with-freetype=/usr/include/

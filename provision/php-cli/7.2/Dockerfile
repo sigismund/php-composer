@@ -18,7 +18,11 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
-    mariadb-client
+    mariadb-client \
+    # mongodb auth fix
+    pkg-config \
+    libssl-dev \
+    libmongoc-1.0-0
 
 RUN docker-php-ext-configure intl \
     && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
