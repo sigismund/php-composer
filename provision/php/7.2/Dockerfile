@@ -18,11 +18,7 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
-    libjpeg-dev \
-    # mongodb auth fix
-    pkg-config \
-    libssl-dev \
-    libmongoc-1.0-0
+    libjpeg-dev
 
 RUN docker-php-ext-configure intl \
     && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \

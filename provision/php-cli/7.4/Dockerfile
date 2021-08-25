@@ -21,10 +21,6 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     # mbstring fix
     libonig-dev \
-    # mongodb auth fix
-    pkg-config \
-    libssl-dev \
-    libmongoc-1.0-0 \
     unzip
 
 RUN docker-php-ext-configure intl \

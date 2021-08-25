@@ -19,10 +19,6 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     mariadb-client \
-    # mongodb auth fix
-    pkg-config \
-    libssl-dev \
-    libmongoc-1.0-0 \
     unzip
 
 RUN docker-php-ext-configure intl \
