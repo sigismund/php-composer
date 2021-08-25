@@ -45,10 +45,9 @@ RUN if [ $WITH_XDEBUG = "true" ] ; then \
         echo "xdebug.client_host=`/sbin/ip route|awk '/default/ { print $3 }'`" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
     fi ;
 
-# Install php-redis php-mongodb php-igbinary
-RUN pecl install -o -f redis mongodb igbinary pcov \
+# Install php-redis php-igbinary
+RUN pecl install -o -f redis-5.3.4 igbinary pcov \
     &&  rm -rf /tmp/pear \
-    && docker-php-ext-enable mongodb \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable igbinary \
     && docker-php-ext-enable pcov
