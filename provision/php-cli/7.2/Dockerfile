@@ -40,11 +40,10 @@ RUN if [ $WITH_XDEBUG = "true" ] ; then \
     fi ;
 
 # Install php-redis php-igbinary
-RUN pecl install -o -f redis-5.3.4 igbinary pcov \
+RUN pecl install -o -f redis-5.3.4 igbinary \
     &&  rm -rf /tmp/pear \
     && docker-php-ext-enable redis \
-    && docker-php-ext-enable igbinary \
-    && docker-php-ext-enable pcov
+    && docker-php-ext-enable igbinary
 
 # Install supercronic
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.9/supercronic-linux-amd64 \

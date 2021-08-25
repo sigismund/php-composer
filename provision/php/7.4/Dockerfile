@@ -37,13 +37,11 @@ RUN if [ $WITH_XDEBUG = "true" ] ; then \
         echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
     fi ;
 
-# Install php-redis php-mongodb php-igbinary
-RUN pecl install -o -f redis mongodb igbinary pcov \
+# Install php-redis php-igbinary
+RUN pecl install -o -f redis igbinary \
     &&  rm -rf /tmp/pear \
-    && docker-php-ext-enable mongodb \
     && docker-php-ext-enable redis \
-    && docker-php-ext-enable igbinary \
-    && docker-php-ext-enable pcov
+    && docker-php-ext-enable igbinary
 
 CMD ["php-fpm"]
 
