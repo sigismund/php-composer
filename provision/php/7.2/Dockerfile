@@ -36,7 +36,6 @@ RUN if [ $WITH_XDEBUG = "true" ] ; then \
         docker-php-ext-enable xdebug; \
         echo "xdebug.idekey = PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
         echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
-        echo "xdebug.client_host=`/sbin/ip route|awk '/default/ { print $3 }'`" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
     fi ;
 
 # Install php-redis php-igbinary
